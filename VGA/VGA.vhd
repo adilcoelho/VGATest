@@ -17,7 +17,8 @@ END VGA;
 
 ARCHITECTURE MAIN OF VGA IS
 	SIGNAL enemies: enemyPositions;
-	CONSTANT enemiesRunning: STD_LOGIC_VECTOR(N_ENEMIES - 1 downto 0) := "01";
+	SIGNAL players: playerPositions;
+	CONSTANT enemiesRunning: STD_LOGIC_VECTOR(N_ENEMIES - 1 downto 0) := "11";
 	SIGNAL VGACLK:STD_LOGIC;
 	COMPONENT SYNC IS
 	PORT(
@@ -28,8 +29,8 @@ ARCHITECTURE MAIN OF VGA IS
 		G: OUT STD_LOGIC_VECTOR(3 downto 0);
 		B: OUT STD_LOGIC_VECTOR(3 downto 0);
 		enemies: IN enemyPositions;
-		enemiesRunning: IN STD_LOGIC_VECTOR(N_ENEMIES - 1 downto 0)
-		--players: IN playerPositions
+		enemiesRunning: IN STD_LOGIC_VECTOR(N_ENEMIES - 1 downto 0);
+		players: IN playerPositions
 	);
 	END COMPONENT SYNC;
 
@@ -52,24 +53,34 @@ ARCHITECTURE MAIN OF VGA IS
 	 END COMPONENT pll;
  BEGIN
 
+	enemies <= ((1,5),(0,3));
+
 	PROCESS (CLOCK_50)
-	VARIABLE enemy2x: integer := 0;
+	VARIABLE player1x: integer := SCREEN_WIDTH/2;
+	VARIABLE player2x: integer := SCREEN_WIDTH/2;
 	BEGIN
 	IF RESET = '0' THEN
-		enemy2x := 0;
+		player1x := SCREEN_WIDTH/2;
+		player2x := SCREEN_WIDTH/2;
 	ELSIF (CLOCK_50'EVENT AND CLOCK_50 = '1') THEN
 		IF(dbcOut = '1') THEN
-			enemy2x := enemy2x + 1;
-			IF enemy2x > SCREEN_WIDTH THEN
-				enemy2x := 0;
+			player2x := player2x + 1;
+			IF player2x > SCREEN_WIDTH THEN
+				player2x := 0;
+			END IF;
+			player1x := player1x - 1;
+			IF player1x < 0 THEN
+				player2x := SCREEN_WIDTH - 1;
 			END IF;
 		END IF;
-		enemies <= ((1,5),(enemy2x,3));
+		players(0) <= (player1x,HEIGHT - 1);
+		players(1) <= (player2x,HEIGHT - 1);
 	END IF;
+
 	END PROCESS;
 	dbc: single_pulse_debounce PORT MAP (not KEY(1), CLOCK_50, dbcOut);
  	C: pll PORT MAP (VGACLK,CLOCK_50,RESET);
- 	C1: SYNC PORT MAP(VGACLK, RESET,VGA_HS,VGA_VS,VGA_R,VGA_G,VGA_B, enemies, enemiesRunning);
+ 	C1: SYNC PORT MAP(VGACLK, RESET,VGA_HS,VGA_VS,VGA_R,VGA_G,VGA_B, enemies, enemiesRunning, players);
  
  END MAIN;
  

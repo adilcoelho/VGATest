@@ -13,8 +13,8 @@ R: OUT STD_LOGIC_VECTOR(3 downto 0);
 G: OUT STD_LOGIC_VECTOR(3 downto 0);
 B: OUT STD_LOGIC_VECTOR(3 downto 0);
 enemies: IN enemyPositions;
-enemiesRunning: IN STD_LOGIC_VECTOR(N_ENEMIES - 1 downto 0)
---players: IN playerPositions
+enemiesRunning: IN STD_LOGIC_VECTOR(N_ENEMIES - 1 downto 0);
+players: IN playerPositions
 );
 END SYNC;
 
@@ -80,7 +80,7 @@ BEGIN
 					END IF;
 				END LOOP;
 				
-				IF isListed = '1' THEN -- se inismigo esta listado, permite desenho do sprite do inimigo
+				IF isListed = '1' and enemySprite(((VSCREENPOS - infosHeight) mod 80)/8)((HSCREENPOS mod 80)/8) = '1' THEN -- se inismigo esta listado, permite desenho do sprite do inimigo
 					R<=(others=>'0');
 					G<=(others=>'1');
 					B<=(others=>'0');
@@ -96,9 +96,28 @@ BEGIN
 					END IF;
 				END IF;
 			ELSE ------------------------------------------------------------------- estamos na area dos players
-					R<="0001";
-					G<="0001";
-					B<="0001";
+				isListed := '0';
+				FOR player in 0 to N_PLAYERS - 1  LOOP
+					IF integer((VSCREENPOS - infosHeight)/80) = players(player)(0) and integer(HSCREENPOS/80) = players(player)(1) THEN
+						isListed := isListed or '1';
+					END IF;
+				END LOOP;
+				
+				IF isListed = '1' THEN--and enemySprite(((VSCREENPOS - infosHeight) mod 80)/8)((HSCREENPOS mod 80)/8) = '1' THEN -- se inismigo esta listado, permite desenho do sprite do inimigo
+					R<=(others=>'1');
+					G<=(others=>'1');
+					B<=(others=>'0');
+				ELSE
+					IF(VSCREENPOS mod 45 = 0) and (HSCREENPOS mod 47 = 0) THEN
+						R<=(others=>'1');
+						G<=(others=>'1');
+						B<=(others=>'1');
+					ELSE
+						R<=(others=>'0');
+						G<="0000";
+						B<="0000";
+					END IF;
+				END IF;
 			END IF;
 
 			IF((HPOS>0 AND HPOS<408) OR (VPOS>0 AND VPOS<42))THEN

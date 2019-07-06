@@ -3,7 +3,8 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 PACKAGE MY IS
-CONSTANT enemySprite: array(0 to 9) of STD_LOGIC_VECTOR(9 downto 0) := (
+type rom_type is array (0 to 9) of std_logic_vector(9 downto 0);
+CONSTANT enemySprite: rom_type := (
 	"0000000000",
 	"0000000000",
 	"0010000100",
@@ -13,7 +14,7 @@ CONSTANT enemySprite: array(0 to 9) of STD_LOGIC_VECTOR(9 downto 0) := (
 	"1111111111",
 	"1011111101",
 	"1010000101",
-	"0001001000",
+	"0001001000"
 );
 PROCEDURE SQ(SIGNAL Xcur,Ycur,Xpos,Ypos:IN INTEGER;SIGNAL RGB:OUT STD_LOGIC_VECTOR(3 downto 0);SIGNAL DRAW: OUT STD_LOGIC);
 END MY;
