@@ -1,11 +1,12 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use work.spaceInvadersConstants.all;
 
 
 ENTITY VGA IS
 PORT(
-CLOCK_24: IN STD_LOGIC_VECTOR(1 downto 0);
+CLOCK_50, RESET: IN STD_LOGIC;
 VGA_HS,VGA_VS:OUT STD_LOGIC;
 SW: STD_LOGIC_VECTOR(1 downto 0);
 KEY: STD_LOGIC_VECTOR(3 DOWNTO 0);
@@ -15,33 +16,60 @@ END VGA;
 
 
 ARCHITECTURE MAIN OF VGA IS
-SIGNAL VGACLK,RESET:STD_LOGIC;
- COMPONENT SYNC IS
- PORT(
-	CLK: IN STD_LOGIC;
-	HSYNC: OUT STD_LOGIC;
-	VSYNC: OUT STD_LOGIC;
-	R: OUT STD_LOGIC_VECTOR(3 downto 0);
-	G: OUT STD_LOGIC_VECTOR(3 downto 0);
-	B: OUT STD_LOGIC_VECTOR(3 downto 0);
-	KEYS: IN STD_LOGIC_VECTOR(3 DOWNTO 0);
-   S: IN STD_LOGIC_VECTOR(1 downto 0)
+	SIGNAL enemies: enemyPositions;
+	CONSTANT enemiesRunning: STD_LOGIC_VECTOR(N_ENEMIES - 1 downto 0) := "01";
+	SIGNAL VGACLK:STD_LOGIC;
+	COMPONENT SYNC IS
+	PORT(
+		CLK, RST: IN STD_LOGIC;
+		HSYNC: OUT STD_LOGIC;
+		VSYNC: OUT STD_LOGIC;
+		R: OUT STD_LOGIC_VECTOR(3 downto 0);
+		G: OUT STD_LOGIC_VECTOR(3 downto 0);
+		B: OUT STD_LOGIC_VECTOR(3 downto 0);
+		enemies: IN enemyPositions;
+		enemiesRunning: IN STD_LOGIC_VECTOR(N_ENEMIES - 1 downto 0)
+		--players: IN playerPositions
 	);
-END COMPONENT SYNC;
+	END COMPONENT SYNC;
 
+	COMPONENT single_pulse_debounce IS 
+	PORT (
+        key_in : IN std_logic;
+        clk : IN std_logic;
+        pulse_out : OUT std_logic;
+        key_out: OUT std_logic);
+	END COMPONENT single_pulse_debounce;
 
+	SIGNAL dbcOut: STD_LOGIC;
 
     component pll is
         port (
-            clkout_clk : out std_logic;        -- clk
-            clkin_clk  : in  std_logic := 'X'; -- clk
-            rst_reset  : in  std_logic := 'X'  -- reset
+            clk_out_clk : out std_logic;        -- clk
+            clk_in_clk  : in  std_logic := 'X'; -- clk
+            reset_reset  : in  std_logic := 'X'  -- reset
         );
 	 END COMPONENT pll;
  BEGIN
- 
- C: pll PORT MAP (VGACLK,CLOCK_24(0),RESET);
- C1: SYNC PORT MAP(VGACLK,VGA_HS,VGA_VS,VGA_R,VGA_G,VGA_B,KEY,SW);
+
+	PROCESS (CLOCK_50)
+	VARIABLE enemy2x: integer := 0;
+	BEGIN
+	IF RESET = '0' THEN
+		enemy2x := 0;
+	ELSIF (CLOCK_50'EVENT AND CLOCK_50 = '1') THEN
+		IF(dbcOut = '1') THEN
+			enemy2x := enemy2x + 1;
+			IF enemy2x > SCREEN_WIDTH THEN
+				enemy2x := 0;
+			END IF;
+		END IF;
+		enemies <= ((1,5),(enemy2x,3));
+	END IF;
+	END PROCESS;
+	dbc: single_pulse_debounce PORT MAP (not KEY(1), CLOCK_50, dbcOut);
+ 	C: pll PORT MAP (VGACLK,CLOCK_50,RESET);
+ 	C1: SYNC PORT MAP(VGACLK, RESET,VGA_HS,VGA_VS,VGA_R,VGA_G,VGA_B, enemies, enemiesRunning);
  
  END MAIN;
  

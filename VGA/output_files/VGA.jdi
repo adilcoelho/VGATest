@@ -1,14 +1,14 @@
 <sld_project_info>
   <project>
-    <hash md5_digest_80b="1cc3f11349488c74a9c7"/>
+    <hash md5_digest_80b="1c58509bb2125a190f93"/>
   </project>
   <file_info>
-    <file device="EP2C20F484C7" path="VGA.sof" usercode="0xFFFFFFFF"/>
+    <file device="EP3C16F484C6" path="VGA.sof" usercode="0xFFFFFFFF"/>
   </file_info>
   <sld_infos>
     <sld_info hpath="pll:C" name="C">
       <assignment_values>
-        <assignment_value text="QSYS_NAME pll HAS_SOPCINFO 1 GENERATION_ID 1376850995"/>
+        <assignment_value text="QSYS_NAME pll HAS_SOPCINFO 1 GENERATION_ID 1562035150"/>
       </assignment_values>
       <parameters/>
     </sld_info>

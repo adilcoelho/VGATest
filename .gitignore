@@ -41,3 +41,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Quartus output files
+./VGA/output_files/
+*.flock
