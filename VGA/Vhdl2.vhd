@@ -16,9 +16,9 @@ enemies: IN enemyPositions;
 enemiesRunning: IN STD_LOGIC_VECTOR(N_ENEMIES - 1 downto 0);
 players: IN playerPositions;
 player1Lives, player2Lives: IN integer range 0 to 3;
-enemyProjectiles: enemyProjectilePositions;
-player1Projectile: position;
-player2Projectile: position
+enemyProjectiles: IN enemyProjectilePositions;
+player1Projectile: IN position;
+player2Projectile: IN position
 );
 END SYNC;
 

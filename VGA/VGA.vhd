@@ -10,20 +10,19 @@ CLOCK_50, RESET: IN STD_LOGIC;
 VGA_HS,VGA_VS:OUT STD_LOGIC;
 SW: STD_LOGIC_VECTOR(1 downto 0);
 KEY: STD_LOGIC_VECTOR(3 DOWNTO 0);
-VGA_R,VGA_B,VGA_G: OUT STD_LOGIC_VECTOR(3 downto 0)
+VGA_R,VGA_B,VGA_G: OUT STD_LOGIC_VECTOR(3 downto 0);
+enemies: IN enemyPositions;
+enemiesRunning: IN STD_LOGIC_VECTOR(N_ENEMIES - 1 downto 0);
+players: IN playerPositions;
+player1Lives, player2Lives: IN integer range 0 to 3;
+enemyProjectiles: IN enemyProjectilePositions;
+player1Projectile: IN position;
+player2Projectile: IN position
 );
 END VGA;
 
 
 ARCHITECTURE MAIN OF VGA IS
-	SIGNAL enemies: enemyPositions;
-	SIGNAL players: playerPositions;
-	CONSTANT enemyProjectiles: enemyProjectilePositions := ((0,4),(1,7),(-1,-1),(-1,-1),(-1,-1));
-	CONSTANT player1Projectile: position := (7, 10);
-	CONSTANT player2Projectile: position := (8, 8);
-	CONSTANT enemiesRunning: STD_LOGIC_VECTOR(N_ENEMIES - 1 downto 0) := "11";
-	CONSTANT player1Lives: integer := 3;
-	CONSTANT player2Lives: integer := 3;
 	SIGNAL VGACLK:STD_LOGIC;
 	COMPONENT SYNC IS
 	PORT(
@@ -37,9 +36,9 @@ ARCHITECTURE MAIN OF VGA IS
 		enemiesRunning: IN STD_LOGIC_VECTOR(N_ENEMIES - 1 downto 0);
 		players: IN playerPositions;
 		player1Lives, player2Lives: IN integer range 0 to 3;
-		enemyProjectiles: enemyProjectilePositions;
-		player1Projectile: position;
-		player2Projectile: position
+		enemyProjectiles: IN enemyProjectilePositions;
+		player1Projectile: IN position;
+		player2Projectile: IN position
 	);
 	END COMPONENT SYNC;
 
@@ -51,10 +50,8 @@ ARCHITECTURE MAIN OF VGA IS
         key_out: OUT std_logic);
 	END COMPONENT single_pulse_debounce;
 
-	SIGNAL dbcOut: STD_LOGIC;
-
-    component pll is
-        port (
+    COMPONENT pll is
+        PORT (
             clk_out_clk : out std_logic;        -- clk
             clk_in_clk  : in  std_logic := 'X'; -- clk
             reset_reset  : in  std_logic := 'X'  -- reset
@@ -62,32 +59,6 @@ ARCHITECTURE MAIN OF VGA IS
 	 END COMPONENT pll;
  BEGIN
 
-	enemies <= ((1,5),(0,3));
-
-	PROCESS (CLOCK_50)
-	VARIABLE player1x: integer := SCREEN_WIDTH/2-1;
-	VARIABLE player2x: integer := SCREEN_WIDTH/2;
-	BEGIN
-	IF RESET = '0' THEN
-		player1x := SCREEN_WIDTH/2-1;
-		player2x := SCREEN_WIDTH/2;
-	ELSIF (CLOCK_50'EVENT AND CLOCK_50 = '1') THEN
-		IF(dbcOut = '1') THEN
-			player2x := player2x + 1;
-			IF player2x > SCREEN_WIDTH-1 THEN
-				player2x := 0;
-			END IF;
-			player1x := player1x - 1;
-			IF player1x < 0 THEN
-				player1x := SCREEN_WIDTH - 1;
-			END IF;
-		END IF;
-		players(0) <= (player1x,HEIGHT - 1);
-		players(1) <= (player2x,HEIGHT - 1);
-	END IF;
-
-	END PROCESS;
-	dbc: single_pulse_debounce PORT MAP (not KEY(1), CLOCK_50, dbcOut);
  	C: pll PORT MAP (VGACLK,CLOCK_50,RESET);
  	C1: SYNC PORT MAP(VGACLK, RESET,VGA_HS,VGA_VS,VGA_R,VGA_G,VGA_B, enemies, enemiesRunning, players,player1Lives,player2Lives,enemyProjectiles,player1Projectile,player2Projectile);
  
