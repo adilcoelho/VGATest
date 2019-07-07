@@ -57,20 +57,20 @@ ARCHITECTURE MAIN OF VGA IS
 
 	PROCESS (CLOCK_50)
 	VARIABLE player1x: integer := SCREEN_WIDTH/2;
-	VARIABLE player2x: integer := SCREEN_WIDTH/2;
+	VARIABLE player2x: integer := SCREEN_WIDTH/2-1;
 	BEGIN
 	IF RESET = '0' THEN
 		player1x := SCREEN_WIDTH/2;
-		player2x := SCREEN_WIDTH/2;
+		player2x := SCREEN_WIDTH/2-1;
 	ELSIF (CLOCK_50'EVENT AND CLOCK_50 = '1') THEN
 		IF(dbcOut = '1') THEN
 			player2x := player2x + 1;
-			IF player2x > SCREEN_WIDTH THEN
+			IF player2x > SCREEN_WIDTH-1 THEN
 				player2x := 0;
 			END IF;
 			player1x := player1x - 1;
 			IF player1x < 0 THEN
-				player2x := SCREEN_WIDTH - 1;
+				player1x := SCREEN_WIDTH - 1;
 			END IF;
 		END IF;
 		players(0) <= (player1x,HEIGHT - 1);
