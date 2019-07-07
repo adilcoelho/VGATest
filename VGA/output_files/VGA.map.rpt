@@ -1,5 +1,5 @@
 Analysis & Synthesis report for VGA
-Sat Jul 06 22:55:12 2019
+Sun Jul 07 17:19:19 2019
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -21,8 +21,8 @@ Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
  13. Source assignments for pll:C|pll_altpll_0:altpll_0
  14. Source assignments for pll:C|pll_altpll_0:altpll_0|pll_altpll_0_stdsync_sv6:stdsync2|pll_altpll_0_dffpipe_l2c:dffpipe3
  15. Parameter Settings for User Entity Instance: single_pulse_debounce:dbc
- 16. Parameter Settings for Inferred Entity Instance: SYNC:C1|lpm_divide:Div0
- 17. Parameter Settings for Inferred Entity Instance: SYNC:C1|lpm_divide:Div1
+ 16. Parameter Settings for Inferred Entity Instance: SYNC:C1|lpm_divide:Div1
+ 17. Parameter Settings for Inferred Entity Instance: SYNC:C1|lpm_divide:Div2
  18. Parameter Settings for Inferred Entity Instance: SYNC:C1|lpm_divide:Mod1
  19. Parameter Settings for Inferred Entity Instance: SYNC:C1|lpm_divide:Mod0
  20. Parameter Settings for Inferred Entity Instance: SYNC:C1|lpm_divide:Mod2
@@ -58,15 +58,15 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Jul 06 22:55:12 2019      ;
+; Analysis & Synthesis Status        ; Successful - Sun Jul 07 17:19:19 2019      ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; VGA                                        ;
 ; Top-level Entity Name              ; VGA                                        ;
 ; Family                             ; Cyclone III                                ;
-; Total logic elements               ; 1,583                                      ;
-;     Total combinational functions  ; 1,578                                      ;
-;     Dedicated logic registers      ; 125                                        ;
-; Total registers                    ; 125                                        ;
+; Total logic elements               ; 1,632                                      ;
+;     Total combinational functions  ; 1,618                                      ;
+;     Dedicated logic registers      ; 134                                        ;
+; Total registers                    ; 134                                        ;
 ; Total pins                         ; 22                                         ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 0                                          ;
@@ -214,20 +214,20 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimated Total logic elements              ; 1,583          ;
+; Estimated Total logic elements              ; 1,632          ;
 ;                                             ;                ;
-; Total combinational functions               ; 1578           ;
+; Total combinational functions               ; 1618           ;
 ; Logic element usage by number of LUT inputs ;                ;
-;     -- 4 input functions                    ; 472            ;
-;     -- 3 input functions                    ; 355            ;
-;     -- <=2 input functions                  ; 751            ;
+;     -- 4 input functions                    ; 503            ;
+;     -- 3 input functions                    ; 365            ;
+;     -- <=2 input functions                  ; 750            ;
 ;                                             ;                ;
 ; Logic elements by mode                      ;                ;
-;     -- normal mode                          ; 1064           ;
-;     -- arithmetic mode                      ; 514            ;
+;     -- normal mode                          ; 1101           ;
+;     -- arithmetic mode                      ; 517            ;
 ;                                             ;                ;
-; Total registers                             ; 125            ;
-;     -- Dedicated logic registers            ; 125            ;
+; Total registers                             ; 134            ;
+;     -- Dedicated logic registers            ; 134            ;
 ;     -- I/O registers                        ; 0              ;
 ;                                             ;                ;
 ; I/O pins                                    ; 22             ;
@@ -237,8 +237,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;                                             ;                ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
 ; Maximum fan-out                             ; 99             ;
-; Total fan-out                               ; 4788           ;
-; Average fan-out                             ; 2.74           ;
+; Total fan-out                               ; 4967           ;
+; Average fan-out                             ; 2.76           ;
 +---------------------------------------------+----------------+
 
 
@@ -247,33 +247,33 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node               ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                       ; Library Name ;
 +------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------------+--------------+
-; |VGA                                     ; 1578 (139)        ; 125 (72)     ; 0           ; 0            ; 0       ; 0         ; 22   ; 0            ; |VGA                                                                                                      ; work         ;
-;    |SYNC:C1|                             ; 1388 (252)        ; 27 (27)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1                                                                                              ; work         ;
-;       |lpm_divide:Div0|                  ; 127 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Div0                                                                              ; work         ;
-;          |lpm_divide_ivo:auto_generated| ; 127 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Div0|lpm_divide_ivo:auto_generated                                                ; work         ;
-;             |abs_divider_mbg:divider|    ; 127 (12)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Div0|lpm_divide_ivo:auto_generated|abs_divider_mbg:divider                        ; work         ;
-;                |alt_u_div_16f:divider|   ; 114 (114)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Div0|lpm_divide_ivo:auto_generated|abs_divider_mbg:divider|alt_u_div_16f:divider  ; work         ;
-;                |lpm_abs_8v9:my_abs_num|  ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Div0|lpm_divide_ivo:auto_generated|abs_divider_mbg:divider|lpm_abs_8v9:my_abs_num ; work         ;
-;       |lpm_divide:Div1|                  ; 121 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Div1                                                                              ; work         ;
-;          |lpm_divide_hvo:auto_generated| ; 121 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Div1|lpm_divide_hvo:auto_generated                                                ; work         ;
-;             |abs_divider_lbg:divider|    ; 121 (12)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Div1|lpm_divide_hvo:auto_generated|abs_divider_lbg:divider                        ; work         ;
-;                |alt_u_div_v5f:divider|   ; 108 (108)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Div1|lpm_divide_hvo:auto_generated|abs_divider_lbg:divider|alt_u_div_v5f:divider  ; work         ;
-;                |lpm_abs_7v9:my_abs_num|  ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Div1|lpm_divide_hvo:auto_generated|abs_divider_lbg:divider|lpm_abs_7v9:my_abs_num ; work         ;
-;       |lpm_divide:Mod0|                  ; 225 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod0                                                                              ; work         ;
-;          |lpm_divide_1po:auto_generated| ; 225 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod0|lpm_divide_1po:auto_generated                                                ; work         ;
-;             |abs_divider_2dg:divider|    ; 225 (23)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod0|lpm_divide_1po:auto_generated|abs_divider_2dg:divider                        ; work         ;
+; |VGA                                     ; 1618 (140)        ; 134 (72)     ; 0           ; 0            ; 0       ; 0         ; 22   ; 0            ; |VGA                                                                                                      ; work         ;
+;    |SYNC:C1|                             ; 1427 (286)        ; 36 (36)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1                                                                                              ; work         ;
+;       |lpm_divide:Div1|                  ; 128 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Div1                                                                              ; work         ;
+;          |lpm_divide_ivo:auto_generated| ; 128 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Div1|lpm_divide_ivo:auto_generated                                                ; work         ;
+;             |abs_divider_mbg:divider|    ; 128 (13)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Div1|lpm_divide_ivo:auto_generated|abs_divider_mbg:divider                        ; work         ;
+;                |alt_u_div_16f:divider|   ; 114 (114)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Div1|lpm_divide_ivo:auto_generated|abs_divider_mbg:divider|alt_u_div_16f:divider  ; work         ;
+;                |lpm_abs_8v9:my_abs_num|  ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Div1|lpm_divide_ivo:auto_generated|abs_divider_mbg:divider|lpm_abs_8v9:my_abs_num ; work         ;
+;       |lpm_divide:Div2|                  ; 121 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Div2                                                                              ; work         ;
+;          |lpm_divide_hvo:auto_generated| ; 121 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Div2|lpm_divide_hvo:auto_generated                                                ; work         ;
+;             |abs_divider_lbg:divider|    ; 121 (12)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Div2|lpm_divide_hvo:auto_generated|abs_divider_lbg:divider                        ; work         ;
+;                |alt_u_div_v5f:divider|   ; 108 (108)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Div2|lpm_divide_hvo:auto_generated|abs_divider_lbg:divider|alt_u_div_v5f:divider  ; work         ;
+;                |lpm_abs_7v9:my_abs_num|  ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Div2|lpm_divide_hvo:auto_generated|abs_divider_lbg:divider|lpm_abs_7v9:my_abs_num ; work         ;
+;       |lpm_divide:Mod0|                  ; 230 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod0                                                                              ; work         ;
+;          |lpm_divide_1po:auto_generated| ; 230 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod0|lpm_divide_1po:auto_generated                                                ; work         ;
+;             |abs_divider_2dg:divider|    ; 230 (23)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod0|lpm_divide_1po:auto_generated|abs_divider_2dg:divider                        ; work         ;
 ;                |alt_u_div_p8f:divider|   ; 188 (188)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod0|lpm_divide_1po:auto_generated|abs_divider_2dg:divider|alt_u_div_p8f:divider  ; work         ;
-;                |lpm_abs_8v9:my_abs_num|  ; 14 (14)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod0|lpm_divide_1po:auto_generated|abs_divider_2dg:divider|lpm_abs_8v9:my_abs_num ; work         ;
-;       |lpm_divide:Mod1|                  ; 205 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod1                                                                              ; work         ;
-;          |lpm_divide_voo:auto_generated| ; 205 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod1|lpm_divide_voo:auto_generated                                                ; work         ;
-;             |abs_divider_0dg:divider|    ; 205 (21)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod1|lpm_divide_voo:auto_generated|abs_divider_0dg:divider                        ; work         ;
+;                |lpm_abs_8v9:my_abs_num|  ; 19 (19)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod0|lpm_divide_1po:auto_generated|abs_divider_2dg:divider|lpm_abs_8v9:my_abs_num ; work         ;
+;       |lpm_divide:Mod1|                  ; 203 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod1                                                                              ; work         ;
+;          |lpm_divide_voo:auto_generated| ; 203 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod1|lpm_divide_voo:auto_generated                                                ; work         ;
+;             |abs_divider_0dg:divider|    ; 203 (21)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod1|lpm_divide_voo:auto_generated|abs_divider_0dg:divider                        ; work         ;
 ;                |alt_u_div_l8f:divider|   ; 168 (168)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod1|lpm_divide_voo:auto_generated|abs_divider_0dg:divider|alt_u_div_l8f:divider  ; work         ;
-;                |lpm_abs_7v9:my_abs_num|  ; 16 (16)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod1|lpm_divide_voo:auto_generated|abs_divider_0dg:divider|lpm_abs_7v9:my_abs_num ; work         ;
-;       |lpm_divide:Mod2|                  ; 238 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod2                                                                              ; work         ;
-;          |lpm_divide_voo:auto_generated| ; 238 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod2|lpm_divide_voo:auto_generated                                                ; work         ;
-;             |abs_divider_0dg:divider|    ; 238 (24)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod2|lpm_divide_voo:auto_generated|abs_divider_0dg:divider                        ; work         ;
+;                |lpm_abs_7v9:my_abs_num|  ; 14 (14)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod1|lpm_divide_voo:auto_generated|abs_divider_0dg:divider|lpm_abs_7v9:my_abs_num ; work         ;
+;       |lpm_divide:Mod2|                  ; 239 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod2                                                                              ; work         ;
+;          |lpm_divide_voo:auto_generated| ; 239 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod2|lpm_divide_voo:auto_generated                                                ; work         ;
+;             |abs_divider_0dg:divider|    ; 239 (24)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod2|lpm_divide_voo:auto_generated|abs_divider_0dg:divider                        ; work         ;
 ;                |alt_u_div_l8f:divider|   ; 196 (196)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod2|lpm_divide_voo:auto_generated|abs_divider_0dg:divider|alt_u_div_l8f:divider  ; work         ;
-;                |lpm_abs_7v9:my_abs_num|  ; 18 (18)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod2|lpm_divide_voo:auto_generated|abs_divider_0dg:divider|lpm_abs_7v9:my_abs_num ; work         ;
+;                |lpm_abs_7v9:my_abs_num|  ; 19 (19)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod2|lpm_divide_voo:auto_generated|abs_divider_0dg:divider|lpm_abs_7v9:my_abs_num ; work         ;
 ;       |lpm_divide:Mod3|                  ; 220 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod3                                                                              ; work         ;
 ;          |lpm_divide_voo:auto_generated| ; 220 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod3|lpm_divide_voo:auto_generated                                                ; work         ;
 ;             |abs_divider_0dg:divider|    ; 220 (24)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |VGA|SYNC:C1|lpm_divide:Mod3|lpm_divide_voo:auto_generated|abs_divider_0dg:divider                        ; work         ;
@@ -307,13 +307,10 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; players[1][0][0]                       ; Stuck at VCC due to stuck port data_in ;
 ; players[0][0][3]                       ; Stuck at VCC due to stuck port data_in ;
 ; players[0][0][1]                       ; Stuck at VCC due to stuck port data_in ;
-; SYNC:C1|R[1..3]                        ; Merged with SYNC:C1|R[0]               ;
-; SYNC:C1|B[1..3]                        ; Merged with SYNC:C1|B[0]               ;
-; SYNC:C1|G[1..3]                        ; Merged with SYNC:C1|G[0]               ;
 ; players[1][0][2]                       ; Merged with players[0][0][2]           ;
 ; pll:C|pll_altpll_0:altpll_0|prev_reset ; Stuck at GND due to stuck port data_in ;
 ; player1x[31]                           ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 18 ;                                        ;
+; Total Number of Removed Registers = 9  ;                                        ;
 +----------------------------------------+----------------------------------------+
 
 
@@ -322,12 +319,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 125   ;
+; Total registers                              ; 134   ;
 ; Number of registers using Synchronous Clear  ; 22    ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 63    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 78    ;
+; Number of registers using Clock Enable       ; 87    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -337,19 +334,19 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------------------------+---------+
 ; Inverted Register                       ; Fan out ;
 +-----------------------------------------+---------+
-; players[0][1][0]                        ; 1       ;
-; players[0][1][1]                        ; 1       ;
-; players[0][1][3]                        ; 1       ;
-; players[0][1][2]                        ; 1       ;
-; players[0][0][2]                        ; 1       ;
 ; players[1][1][0]                        ; 1       ;
 ; players[1][1][1]                        ; 1       ;
 ; players[1][1][3]                        ; 1       ;
 ; players[1][1][2]                        ; 1       ;
-; player1x[3]                             ; 2       ;
-; player2x[0]                             ; 2       ;
-; player2x[2]                             ; 2       ;
-; player2x[1]                             ; 2       ;
+; players[0][0][2]                        ; 1       ;
+; players[0][1][0]                        ; 1       ;
+; players[0][1][1]                        ; 1       ;
+; players[0][1][3]                        ; 1       ;
+; players[0][1][2]                        ; 1       ;
+; player2x[3]                             ; 2       ;
+; player1x[0]                             ; 2       ;
+; player1x[2]                             ; 2       ;
+; player1x[1]                             ; 2       ;
 ; Total number of inverted registers = 13 ;         ;
 +-----------------------------------------+---------+
 
@@ -359,7 +356,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output             ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
-; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |VGA|single_pulse_debounce:dbc|temp[0] ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |VGA|single_pulse_debounce:dbc|temp[3] ;
 ; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |VGA|player1x                          ;
 ; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |VGA|player2x                          ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------+
@@ -395,7 +392,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +--------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: SYNC:C1|lpm_divide:Div0 ;
+; Parameter Settings for Inferred Entity Instance: SYNC:C1|lpm_divide:Div1 ;
 +------------------------+----------------+--------------------------------+
 ; Parameter Name         ; Value          ; Type                           ;
 +------------------------+----------------+--------------------------------+
@@ -418,7 +415,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +--------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: SYNC:C1|lpm_divide:Div1 ;
+; Parameter Settings for Inferred Entity Instance: SYNC:C1|lpm_divide:Div2 ;
 +------------------------+----------------+--------------------------------+
 ; Parameter Name         ; Value          ; Type                           ;
 +------------------------+----------------+--------------------------------+
@@ -532,22 +529,43 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+-------------------------------------------------------+
-; Port Connectivity Checks: "SYNC:C1"                   ;
-+---------------------+-------+----------+--------------+
-; Port                ; Type  ; Severity ; Details      ;
-+---------------------+-------+----------+--------------+
-; enemies[1][1][3..1] ; Input ; Info     ; Stuck at GND ;
-; enemies[1][1][0]    ; Input ; Info     ; Stuck at VCC ;
-; enemies[1][0][3]    ; Input ; Info     ; Stuck at GND ;
-; enemies[1][0][2]    ; Input ; Info     ; Stuck at VCC ;
-; enemies[1][0][1]    ; Input ; Info     ; Stuck at GND ;
-; enemies[1][0][0]    ; Input ; Info     ; Stuck at VCC ;
-; enemies[0][1]       ; Input ; Info     ; Stuck at GND ;
-; enemies[0][0][1..0] ; Input ; Info     ; Stuck at VCC ;
-; enemies[0][0][3..2] ; Input ; Info     ; Stuck at GND ;
-; enemiesrunning      ; Input ; Info     ; Stuck at VCC ;
-+---------------------+-------+----------+--------------+
++----------------------------------------------------------------+
+; Port Connectivity Checks: "SYNC:C1"                            ;
++------------------------------+-------+----------+--------------+
+; Port                         ; Type  ; Severity ; Details      ;
++------------------------------+-------+----------+--------------+
+; enemies[1][1][3..1]          ; Input ; Info     ; Stuck at GND ;
+; enemies[1][1][0]             ; Input ; Info     ; Stuck at VCC ;
+; enemies[1][0][3]             ; Input ; Info     ; Stuck at GND ;
+; enemies[1][0][2]             ; Input ; Info     ; Stuck at VCC ;
+; enemies[1][0][1]             ; Input ; Info     ; Stuck at GND ;
+; enemies[1][0][0]             ; Input ; Info     ; Stuck at VCC ;
+; enemies[0][1]                ; Input ; Info     ; Stuck at GND ;
+; enemies[0][0][1..0]          ; Input ; Info     ; Stuck at VCC ;
+; enemies[0][0][3..2]          ; Input ; Info     ; Stuck at GND ;
+; enemiesrunning               ; Input ; Info     ; Stuck at VCC ;
+; player1lives                 ; Input ; Info     ; Stuck at VCC ;
+; player2lives                 ; Input ; Info     ; Stuck at VCC ;
+; enemyprojectiles[2..0]       ; Input ; Info     ; Stuck at VCC ;
+; enemyprojectiles[4][1]       ; Input ; Info     ; Stuck at GND ;
+; enemyprojectiles[4][0][1..0] ; Input ; Info     ; Stuck at GND ;
+; enemyprojectiles[4][0][3]    ; Input ; Info     ; Stuck at GND ;
+; enemyprojectiles[4][0][2]    ; Input ; Info     ; Stuck at VCC ;
+; enemyprojectiles[3][1][3..1] ; Input ; Info     ; Stuck at GND ;
+; enemyprojectiles[3][1][0]    ; Input ; Info     ; Stuck at VCC ;
+; enemyprojectiles[3][0][2..0] ; Input ; Info     ; Stuck at VCC ;
+; enemyprojectiles[3][0][3]    ; Input ; Info     ; Stuck at GND ;
+; player1projectile[1][2..0]   ; Input ; Info     ; Stuck at VCC ;
+; player1projectile[1][3]      ; Input ; Info     ; Stuck at GND ;
+; player1projectile[0][3]      ; Input ; Info     ; Stuck at VCC ;
+; player1projectile[0][2]      ; Input ; Info     ; Stuck at GND ;
+; player1projectile[0][1]      ; Input ; Info     ; Stuck at VCC ;
+; player1projectile[0][0]      ; Input ; Info     ; Stuck at GND ;
+; player2projectile[1][2..0]   ; Input ; Info     ; Stuck at GND ;
+; player2projectile[1][3]      ; Input ; Info     ; Stuck at VCC ;
+; player2projectile[0][2..0]   ; Input ; Info     ; Stuck at GND ;
+; player2projectile[0][3]      ; Input ; Info     ; Stuck at VCC ;
++------------------------------+-------+----------+--------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------+
@@ -595,7 +613,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Sat Jul 06 22:55:06 2019
+    Info: Processing started: Sun Jul 07 17:19:13 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off VGA -c VGA
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file single_pulse_debounce.vhd
@@ -621,7 +639,7 @@ Info (12021): Found 2 design units, including 0 entities, in source file pcg.vhd
     Info (12022): Found design unit 1: MY
     Info (12022): Found design unit 2: MY-body
 Info (12127): Elaborating entity "VGA" for the top level hierarchy
-Warning (10492): VHDL Process Statement warning at VGA.vhd(62): signal "RESET" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at VGA.vhd(71): signal "RESET" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "enemies" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "players" into its bus
 Info (12128): Elaborating entity "single_pulse_debounce" for hierarchy "single_pulse_debounce:dbc"
@@ -631,20 +649,22 @@ Info (12128): Elaborating entity "pll_altpll_0_stdsync_sv6" for hierarchy "pll:C
 Info (12128): Elaborating entity "pll_altpll_0_dffpipe_l2c" for hierarchy "pll:C|pll_altpll_0:altpll_0|pll_altpll_0_stdsync_sv6:stdsync2|pll_altpll_0_dffpipe_l2c:dffpipe3"
 Info (12128): Elaborating entity "pll_altpll_0_altpll_h542" for hierarchy "pll:C|pll_altpll_0:altpll_0|pll_altpll_0_altpll_h542:sd1"
 Info (12128): Elaborating entity "SYNC" for hierarchy "SYNC:C1"
-Warning (10492): VHDL Process Statement warning at Vhdl2.vhd(66): signal "RST" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at Vhdl2.vhd(73): signal "RST" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "enemies" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "players" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "enemyProjectiles" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "enemies" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "players" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "enemyProjectiles" into its bus
 Info (278001): Inferred 6 megafunctions from design logic
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "SYNC:C1|Div0"
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "SYNC:C1|Div1"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "SYNC:C1|Div2"
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "SYNC:C1|Mod1"
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "SYNC:C1|Mod0"
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "SYNC:C1|Mod2"
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "SYNC:C1|Mod3"
-Info (12130): Elaborated megafunction instantiation "SYNC:C1|lpm_divide:Div0"
-Info (12133): Instantiated megafunction "SYNC:C1|lpm_divide:Div0" with the following parameter:
+Info (12130): Elaborated megafunction instantiation "SYNC:C1|lpm_divide:Div1"
+Info (12133): Instantiated megafunction "SYNC:C1|lpm_divide:Div1" with the following parameter:
     Info (12134): Parameter "LPM_WIDTHN" = "13"
     Info (12134): Parameter "LPM_WIDTHD" = "8"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
@@ -664,8 +684,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_
     Info (12023): Found entity 1: lpm_abs_st9
 Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_8v9.tdf
     Info (12023): Found entity 1: lpm_abs_8v9
-Info (12130): Elaborated megafunction instantiation "SYNC:C1|lpm_divide:Div1"
-Info (12133): Instantiated megafunction "SYNC:C1|lpm_divide:Div1" with the following parameter:
+Info (12130): Elaborated megafunction instantiation "SYNC:C1|lpm_divide:Div2"
+Info (12133): Instantiated megafunction "SYNC:C1|lpm_divide:Div2" with the following parameter:
     Info (12134): Parameter "LPM_WIDTHN" = "12"
     Info (12134): Parameter "LPM_WIDTHD" = "8"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
@@ -725,9 +745,9 @@ Info (13000): Registers with preset signals will power-up high
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info (286030): Timing-Driven Synthesis is running
 Info (17016): Found the following redundant logic cells in design
-    Info (17048): Logic cell "SYNC:C1|lpm_divide:Div0|lpm_divide_ivo:auto_generated|abs_divider_mbg:divider|alt_u_div_16f:divider|add_sub_7_result_int[3]~10"
-    Info (17048): Logic cell "SYNC:C1|lpm_divide:Div0|lpm_divide_ivo:auto_generated|abs_divider_mbg:divider|alt_u_div_16f:divider|add_sub_7_result_int[2]~12"
-    Info (17048): Logic cell "SYNC:C1|lpm_divide:Div0|lpm_divide_ivo:auto_generated|abs_divider_mbg:divider|alt_u_div_16f:divider|add_sub_7_result_int[1]~14"
+    Info (17048): Logic cell "SYNC:C1|lpm_divide:Div1|lpm_divide_ivo:auto_generated|abs_divider_mbg:divider|alt_u_div_16f:divider|add_sub_7_result_int[3]~10"
+    Info (17048): Logic cell "SYNC:C1|lpm_divide:Div1|lpm_divide_ivo:auto_generated|abs_divider_mbg:divider|alt_u_div_16f:divider|add_sub_7_result_int[2]~12"
+    Info (17048): Logic cell "SYNC:C1|lpm_divide:Div1|lpm_divide_ivo:auto_generated|abs_divider_mbg:divider|alt_u_div_16f:divider|add_sub_7_result_int[1]~14"
     Info (17048): Logic cell "SYNC:C1|lpm_divide:Mod0|lpm_divide_1po:auto_generated|abs_divider_2dg:divider|alt_u_div_p8f:divider|add_sub_7_result_int[3]~10"
     Info (17048): Logic cell "SYNC:C1|lpm_divide:Mod0|lpm_divide_1po:auto_generated|abs_divider_2dg:divider|alt_u_div_p8f:divider|add_sub_7_result_int[2]~12"
     Info (17048): Logic cell "SYNC:C1|lpm_divide:Mod0|lpm_divide_1po:auto_generated|abs_divider_2dg:divider|alt_u_div_p8f:divider|add_sub_7_result_int[1]~14"
@@ -739,14 +759,14 @@ Warning (21074): Design contains 5 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "KEY[0]"
     Warning (15610): No output dependent on input pin "KEY[2]"
     Warning (15610): No output dependent on input pin "KEY[3]"
-Info (21057): Implemented 1625 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1677 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 8 input pins
     Info (21059): Implemented 14 output pins
-    Info (21061): Implemented 1602 logic cells
+    Info (21061): Implemented 1654 logic cells
     Info (21065): Implemented 1 PLLs
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 9 warnings
-    Info: Peak virtual memory: 4696 megabytes
-    Info: Processing ended: Sat Jul 06 22:55:12 2019
+    Info: Peak virtual memory: 4693 megabytes
+    Info: Processing ended: Sun Jul 07 17:19:19 2019
     Info: Elapsed time: 00:00:06
     Info: Total CPU time (on all processors): 00:00:06
 
